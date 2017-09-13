@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
+import AddJobForm from './AddJobForm'
 
 class NavBar extends React.Component {
   constructor() {
     super()
 
-    this.state = {}
+    this.state = {
+      
+    }
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleAddClick = (e, { name }) => console.log("Clicked +ADD, my boy!")
+  handleItemClick = (e, { name }) => console.log("Clicked, my boy!")
 
   render() {
     const { activeItem } = this.state
@@ -17,27 +21,27 @@ class NavBar extends React.Component {
     return (
       <Menu inverted>
         <Menu.Item
-          name='editorials'
-          active={activeItem === 'editorials'}
-          onClick={this.handleItemClick}
+          name='+ADD'
+
+          onClick={this.handleAddClick}
         >
-          Editorials
+          +ADD
         </Menu.Item>
 
         <Menu.Item
-          name='reviews'
-          active={activeItem === 'reviews'}
+          name='MAPS'
+
           onClick={this.handleItemClick}
         >
-          Reviews
+          MAPS
         </Menu.Item>
 
         <Menu.Item
-          name='upcomingEvents'
-          active={activeItem === 'upcomingEvents'}
+          name='REPORTS'
+
           onClick={this.handleItemClick}
         >
-          Upcoming Events
+          REPORTS
         </Menu.Item>
       </Menu>
     )
