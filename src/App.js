@@ -51,14 +51,22 @@ class App extends Component {
       return (
         <div>
           <NavBar />
-          <AddJobForm makeJob={this.makeJob.bind(this)} addJobToJobs={this.addJobToJobs.bind(this)} handleAddJobClick={this.handleAddJobClick.bind(this)} />
+          <AddJobForm
+            makeJob={this.makeJob.bind(this)}
+            addJobToJobs={this.addJobToJobs.bind(this)}
+            handleAddJobClick={this.handleAddJobClick.bind(this)}
+          />
         </div>
       )
     } else {
       return (
         <div>
           <NavBar />
-          <Home drivers={this.state.drivers} jobs={this.state.jobs} handleAddJobClick={this.handleAddJobClick.bind()}/>
+          <Home
+            drivers={this.state.drivers}
+            jobs={this.state.jobs}
+            handleAddJobClick={this.handleAddJobClick.bind()}
+          />
         </div>
       )
     }
