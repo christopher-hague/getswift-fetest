@@ -13,6 +13,8 @@ class MenuContainer extends React.Component {
     }
   }
 
+  handleAddJobClick = (e) => this.setState({displayForm: !this.state.displayForm})
+
   addJobsToDrivers() {
     this.state.drivers.forEach(driver =>
       driver.jobs = this.state.jobs.filter(job => job.driverId === driver.id)
@@ -32,7 +34,8 @@ class MenuContainer extends React.Component {
 
             <div className="ui segment">
               <div className="drivers-header">
-                <h3>Menu</h3>
+                { /*create a function that changes renderJobForm status in App.js */ }
+                <button className="ui primary button" onClick={this.props.handleAddJobClick}>Add Job</button>
               </div>
             </div>
 

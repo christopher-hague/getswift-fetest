@@ -3,6 +3,12 @@ import './App.css';
 import NavBar from './components/NavBar'
 import MapContainer from './containers/MapContainer'
 import MenuContainer from './containers/MenuContainer'
+import Home from './containers/Home'
+import AddJobForm from './components/AddJobForm'
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
 
 const allDrivers = [
   {id: 1, name: "Leonardo", jobs: [], imageURL: "https://i0.wp.com/www.teenagemutantninjaturtles.com/wp-content/uploads/2013/01/character-leonardo1.png"},
@@ -12,13 +18,13 @@ const allDrivers = [
 ]
 
 const allJobs = [
-  { driverId: 1, jobNum: 2343, location: "Times Square", customer: "Austin Powers" },
-  { driverId: 3, jobNum: 1343, location: "Katz's Delicatessen", customer: "Derrick Zoolander" },
-  { driverId: 2, jobNum: 243, location: "Grand Central", customer: "Thomas the Tank Engine" },
-  { driverId: 3, jobNum: 2103, location: "LaGuardia", customer: "Steven Spielberg"},
-  { driverId: 3, jobNum: 953, location: "Brooklyn Bridge", customer: "Ken Burns" },
-  { driverId: 1, jobNum: 745, location: "Empire State Building", customer: "King Kong" },
-  { driverId: 3, jobNum: 901, location: "Xi'An's Famous Noodles", customer: "Bobby Flay" }
+  { driverId: 1, jobNum: 1, location: "Times Square", customer: "Austin Powers" },
+  { driverId: 3, jobNum: 2, location: "Katz's Delicatessen", customer: "Derrick Zoolander" },
+  { driverId: 2, jobNum: 3, location: "Grand Central", customer: "Thomas the Tank Engine" },
+  { driverId: 3, jobNum: 4, location: "LaGuardia", customer: "Steven Spielberg"},
+  { driverId: 3, jobNum: 5, location: "Brooklyn Bridge", customer: "Ken Burns" },
+  { driverId: 1, jobNum: 6, location: "Empire State Building", customer: "King Kong" },
+  { driverId: 3, jobNum: 7, location: "Xi'An Famous Noodles", customer: "Bobby Flay" }
 ]
 
 class App extends Component {
@@ -26,20 +32,35 @@ class App extends Component {
     super()
     this.state = {
       drivers: allDrivers,
-      jobs: allJobs
+      jobs: allJobs,
+      renderJobForm: false
     }
   }
 
+  handleAddJobClick = (e) => this.setState({ renderJobForm: !this.state.renderJobForm })
+  addJobToJobs(location, customer) {
+    this.setState({
+      jobs: [...this.state.jobs, {driverId: this.state.drivers.reduce((a,b) => a.jobs.length <= b.jobs.length ? a : b).id, jobNum: this.state.jobs.length + 1, location: location, customer: customer}]
+    })
+  }
+
   render() {
-    return (
-      <div>
-        <NavBar />
-
-        <MenuContainer drivers={this.state.drivers} jobs={this.state.jobs}/>
-
-        <MapContainer />
-      </div>
-    );
+    console.log(this.state)
+    if(this.state.renderJobForm) {
+      return (
+        <div>
+          <NavBar />
+          <AddJobForm addJobToJobs={this.addJobToJobs.bind(this)} handleAddJobClick={this.handleAddJobClick.bind(this)} />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <NavBar />
+          <Home drivers={this.state.drivers} jobs={this.state.jobs} handleAddJobClick={this.handleAddJobClick.bind()}/>
+        </div>
+      )
+    }
   }
 }
 

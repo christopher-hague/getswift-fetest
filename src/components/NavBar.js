@@ -7,9 +7,7 @@ class NavBar extends React.Component {
   constructor() {
     super()
 
-    this.state = {
-      
-    }
+    this.state = {}
   }
 
   handleAddClick = (e, { name }) => console.log("Clicked +ADD, my boy!")
@@ -19,31 +17,33 @@ class NavBar extends React.Component {
     const { activeItem } = this.state
 
     return (
-      <Menu inverted>
-        <Menu.Item
-          name='+ADD'
+      <div>
+        <Menu inverted>
+          <Menu.Item
+            name='+ADD'
 
-          onClick={this.handleAddClick}
-        >
-          +ADD
-        </Menu.Item>
+            onClick={this.handleAddClick}
+          >
+            +ADD
+          </Menu.Item>
 
-        <Menu.Item
-          name='MAPS'
+          <Menu.Item
+            name='MAPS'
 
-          onClick={this.handleItemClick}
-        >
-          MAPS
-        </Menu.Item>
+            onClick={this.handleItemClick}
+          >
+            MAPS
+          </Menu.Item>
 
-        <Menu.Item
-          name='REPORTS'
+          <Menu.Item
+            name='REPORTS'
 
-          onClick={this.handleItemClick}
-        >
-          REPORTS
-        </Menu.Item>
-      </Menu>
+            onClick={this.handleItemClick}
+          >
+            REPORTS
+          </Menu.Item>
+        </Menu>
+      </div>
     )
   }
 }
