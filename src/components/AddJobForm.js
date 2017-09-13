@@ -13,8 +13,12 @@ class AddJobForm extends React.Component {
   handleLocationChange = (e) => this.setState({ location: e.target.value })
   handleCustomerChange = (e) => this.setState({ customer: e.target.value })
   handleSubmitJob() {
-    this.props.addJobToJobs(this.props.makeJob(this.state.location, this.state.customer))
-    this.props.handleAddJobClick()
+    if(!this.state.location || !this.state.customer) {
+      return alert("please enter a location and a username")
+    } else {
+      this.props.addJobToJobs(this.props.makeJob(this.state.location, this.state.customer))
+      this.props.handleAddJobClick()
+    }
   }
 
   render() {
@@ -28,7 +32,8 @@ class AddJobForm extends React.Component {
           <label>Name</label>
           <input type="text" name="pick-up location" onChange={this.handleCustomerChange.bind(this)} placeholder="Please enter the name associated with your account" />
         </div>
-        <button className="ui button" type="submit" onClick={this.handleSubmitJob.bind(this)}>Add Job</button>
+        <button className="ui primary button" type="submit" onClick={this.handleSubmitJob.bind(this)}>Add Job</button>
+        <button className="ui red button" color="red" onClick={this.props.handleAddJobClick}>Cancel</button>
       </div>
     )
   }
