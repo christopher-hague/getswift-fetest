@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavBar from './components/NavBar'
-import MapContainer from './containers/MapContainer'
-import MenuContainer from './containers/MenuContainer'
 import Home from './containers/Home'
 import AddJobForm from './components/AddJobForm'
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom'
 
 const allDrivers = [
   {id: 1, name: "Leonardo", jobs: [], imageURL: "https://i0.wp.com/www.teenagemutantninjaturtles.com/wp-content/uploads/2013/01/character-leonardo1.png"},
@@ -38,19 +32,26 @@ class App extends Component {
   }
 
   handleAddJobClick = (e) => this.setState({ renderJobForm: !this.state.renderJobForm })
-  addJobToJobs(location, customer) {
+  addJobToJobs(job) {
     this.setState({
-      jobs: [...this.state.jobs, {driverId: this.state.drivers.reduce((a,b) => a.jobs.length <= b.jobs.length ? a : b).id, jobNum: this.state.jobs.length + 1, location: location, customer: customer}]
+      jobs: [...this.state.jobs, job]
     })
   }
 
+  makeJob(location, customer) {
+    return {
+      driverId: this.state.drivers.reduce((a,b) => a.jobs.length <= b.jobs.length ? a : b).id,
+      jobNum: this.state.jobs.length + 1,
+      location: location, customer: customer
+    }
+  }
+
   render() {
-    console.log(this.state)
     if(this.state.renderJobForm) {
       return (
         <div>
           <NavBar />
-          <AddJobForm addJobToJobs={this.addJobToJobs.bind(this)} handleAddJobClick={this.handleAddJobClick.bind(this)} />
+          <AddJobForm makeJob={this.makeJob.bind(this)} addJobToJobs={this.addJobToJobs.bind(this)} handleAddJobClick={this.handleAddJobClick.bind(this)} />
         </div>
       )
     } else {

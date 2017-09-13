@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import { Menu } from 'semantic-ui-react'
-import AddJobForm from './AddJobForm'
 
 class NavBar extends React.Component {
   constructor() {
@@ -10,12 +8,11 @@ class NavBar extends React.Component {
     this.state = {}
   }
 
-  handleAddClick = (e, { name }) => console.log("Clicked +ADD, my boy!")
-  handleItemClick = (e, { name }) => console.log("Clicked, my boy!")
+  handleAddClick = (e, { name }) => console.log("Clicked +ADD!")
+  handleMapsClick = (e, { name }) => console.log("Clicked MAPS!")
+  handleReportsClick = (e, { name }) => console.log("Clicked REPORTS!")
 
   render() {
-    const { activeItem } = this.state
-
     return (
       <div>
         <Menu inverted>
@@ -30,7 +27,7 @@ class NavBar extends React.Component {
           <Menu.Item
             name='MAPS'
 
-            onClick={this.handleItemClick}
+            onClick={this.handleMapsClick}
           >
             MAPS
           </Menu.Item>
@@ -38,7 +35,7 @@ class NavBar extends React.Component {
           <Menu.Item
             name='REPORTS'
 
-            onClick={this.handleItemClick}
+            onClick={this.handleReportsClick}
           >
             REPORTS
           </Menu.Item>

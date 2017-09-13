@@ -25,8 +25,6 @@ class MenuContainer extends React.Component {
     this.addJobsToDrivers()
     return (
       <div>
-        <div className="ui grid">
-          <div className="four wide column">
 
             <div className="ui segment">
               <SearchBar />
@@ -34,7 +32,6 @@ class MenuContainer extends React.Component {
 
             <div className="ui segment">
               <div className="drivers-header">
-                { /*create a function that changes renderJobForm status in App.js */ }
                 <button className="ui primary button" onClick={this.props.handleAddJobClick}>Add Job</button>
               </div>
             </div>
@@ -46,13 +43,10 @@ class MenuContainer extends React.Component {
             <div className="ui segment">
               <Jobs jobs={this.state.jobs} drivers={this.state.drivers} />
             </div>
-          </div>
-        </div>
+
       </div>
     )
   }
 }
 
 export default MenuContainer
-
-// find a way to add appropritate driver / job info via menu container rather thant the components themselves
